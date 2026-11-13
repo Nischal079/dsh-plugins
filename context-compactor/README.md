@@ -12,16 +12,45 @@ ContextCompactor is a DSH bundle with no runtime dependencies. Node 18.17 or
 newer is only needed to run the tests; the plugin itself runs on the
 Harness's bundled Node.
 
-Register the bundle in your DSH profile: point the app's bundle installer at
-this directory, or copy the `insert` row from
-[cordis.patch.yml](cordis.patch.yml) into
+### From GitHub (recommended)
+
+Install the bundle directly from this repository:
+
+```bash
+dsh plugin --profile desktop add "github:Nischal079/dsh-plugins#path:/context-compactor"
+```
+
+Replace `desktop` with the name of your target profile if different.
+
+> **Note:** The `#path:/context-compactor` parameter tells DSH to install the
+> plugin from the `context-compactor` subdirectory inside the `dsh-plugins`
+> repository, rather than treating `context-compactor` as part of the
+> repository name. The quotes around the specifier are required so your shell
+> does not misparse the `#`.
+
+### Manual registration
+
+Alternatively, point the app's bundle installer at this directory, or copy the
+`insert` row from [cordis.patch.yml](cordis.patch.yml) into
 `~/.dsh/profiles/<profile>/cordis.patch.yml` and restart the Harness. The
 `config` block in that row is where the keys below are set.
 
-Verify the folder with:
+### Verify
+
+Run the test suite from inside the plugin directory:
 
 ```bash
 npm test
+```
+
+### Updating
+
+DSH does not support in-place updates via `add`. To pull the latest version
+from GitHub, remove the plugin first, then reinstall:
+
+```bash
+dsh plugin --profile desktop remove @local/context-compactor
+dsh plugin --profile desktop add "github:Nischal079/dsh-plugins#path:/context-compactor"
 ```
 
 ## Why
