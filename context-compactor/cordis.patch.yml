@@ -1,0 +1,29 @@
+# ContextCompactor bundle.
+#
+# One row installs the plugin. The built-in model-summarizing compactor is
+# pushed up to a last-resort band above this plugin's triggers so the two
+# engines never race: ContextCompactor performs range compaction below the
+# emergency point, then a full-surface reset-and-continue handover, while the
+# built-in engine keeps provider-overflow recovery available.
+- insert:
+    - id: context-compactor
+      name: '@local/context-compactor'
+      config:
+        thresholdRatio: 0.9
+        handoverRatio: 0.985
+        fullResetOnHandover: true
+        handoverReserveTokens: 6144
+        carriedSummaryTokenBudget: 200
+        checkpointTokenBudget: 900
+        dryRun: false
+
+- id: compaction-basic
+  config:
+    thresholdRatio: 0.97
+    headroomTokens: 1024
+    retainRatio: 0.08
+    maxTokens: 8192
+    compactionRetries: 1
+    maxOverflowRetries: 1
+    modelPolicies: []
+    auto: true

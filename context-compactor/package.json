@@ -1,0 +1,44 @@
+{
+  "name": "@local/context-compactor",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic state compaction, emergency handover, and cross-restart resume for DeepSeek Harness sessions.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "context-compaction",
+    "context-window",
+    "agent",
+    "checkpoint",
+    "plugin",
+    "bundle"
+  ],
+  "license": "MIT",
+  "author": "Nischal Poudel",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

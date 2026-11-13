@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "ContextCompactor",
+    "description": "在上下文占用达到 90% 时用确定性的任务检查点替换旧历史，并在重启或切换模型后自动恢复。"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "ContextCompactor",
+    "description": "Replaces old history with a deterministic task checkpoint at 90% context, then resumes across restarts and model switches."
+  }
+}
